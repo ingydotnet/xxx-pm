@@ -1,4 +1,9 @@
 ---
+version: 0.11
+date:    Sun Jun  1 22:28:12 PDT 2008
+changes:
+- Add YYY.pm to get around CPAN indexing.
+---
 version: 0.10
 date:    Sat Feb 18 10:29:44 PST 2006
 changes:

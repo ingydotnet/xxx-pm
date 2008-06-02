@@ -2,9 +2,15 @@ package XXX;
 use 5.006001;
 use strict;
 use warnings;
+no warnings 'redefine';
 use base 'Exporter';
 
-our $VERSION = '0.10';
+{
+    no strict 'refs';
+    *{"YYY::"} = *{"XXX::"};
+}
+
+our $VERSION = '0.11';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 my $dump = 'yaml';
@@ -13,9 +19,9 @@ sub import {
     my ($package, @args) = @_;
     for my $arg (@args) {
         $dump = 'dumper'
-          if $arg eq '-dumper';
+          if $arg =~ /^-dumper$/i;
         $dump = 'yaml'
-          if $arg eq '-yaml';
+          if $arg =~ /^-yaml$/i;
     }
     @_ = ($package);
     goto &Exporter::import;
@@ -58,6 +64,8 @@ sub ZZZ {
 }
 
 1;
+
+=encoding utf8
 
 =head1 NAME
 
@@ -111,7 +119,7 @@ mnemonic: XXX == Death, Nudity
 YYY will print a dump of its arguments, and then return the original
 arguments. This means you can stick it in the middle of expressions.
 
-mnemonic: YYY == Why Why Why or YAML YAML YAML
+mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
 =item ZZZ
 
@@ -121,13 +129,24 @@ mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
 =back
 
+=head1 NOTE FOR INSTALLING XXX
+
+At this time CPAN indexes XXX.pm to some other module distribution that
+doesn't even have an XXX.pm module. Oh the wonders of CPAN. To install
+this module, ask for YYY.pm instead. Something like this should work:
+
+    sudo cpan YYY
+
+This will install XXX.pm and YYY.pm (which is an exact copy of XXX.pm).
+You can use either one. :)
+
 =head1 AUTHOR
 
 Ingy döt Net <ingy@cpan.org>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2006. Ingy döt Net. All rights reserved.
+Copyright (c) 2006, 2008. Ingy döt Net.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
