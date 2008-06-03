@@ -1,4 +1,9 @@
 ---
+version: 0.12
+date:    Tue Jun  3 13:07:31 PDT 2008
+changes:
+- Get rid of a bareword error.
+---
 version: 0.11
 date:    Sun Jun  1 22:28:12 PDT 2008
 changes:

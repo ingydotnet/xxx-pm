@@ -10,7 +10,7 @@ use base 'Exporter';
     *{"YYY::"} = *{"XXX::"};
 }
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 my $dump = 'yaml';
@@ -60,7 +60,7 @@ sub YYY {
 
 sub ZZZ {
     require Carp;
-    Carp::confess _xxx_dump(@_);
+    Carp::confess(_xxx_dump(@_));
 }
 
 1;
