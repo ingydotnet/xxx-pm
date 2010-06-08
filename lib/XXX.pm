@@ -2,15 +2,9 @@ package XXX;
 use 5.006001;
 use strict;
 use warnings;
-no warnings 'redefine';
 use base 'Exporter';
 
-{
-    no strict 'refs';
-    *{"YYY::"} = *{"XXX::"};
-}
-
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 my $dump_type = 'yaml';
@@ -70,16 +64,25 @@ sub _at_line_number {
 }
 
 sub WWW {
-    warn _xxx_dump(@_) . _at_line_number;
+    warn _xxx_dump(@_) . _at_line_number();
     return wantarray ? @_ : $_[0];
 }
 
 sub XXX {
-    die _xxx_dump(@_) . _at_line_number;
+    die _xxx_dump(@_) . _at_line_number();
 }
 
 sub YYY {
-    print _xxx_dump(@_) . _at_line_number;
+    my $dump = _xxx_dump(@_) . _at_line_number();
+    if (defined &main::diag and
+        defined &Test::More::diag and
+        \&main::diag eq \&Test::More::diag
+    ) {
+        main::diag($dump);
+    }
+    else {
+        print($dump);
+    }
     return wantarray ? @_ : $_[0];
 }
 
@@ -139,6 +142,8 @@ mnemonic: XXX == Death, Nudity
 YYY will print a dump of its arguments, and then return the original
 arguments. This means you can stick it in the middle of expressions.
 
+If you use YYY with Test::More, it will <diag()> rather than C<print()>.
+
 mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
 =item ZZZ
@@ -161,23 +166,6 @@ You can also use these forms, but they are now deprecated:
 
     use XXX -dumper;
     use XXX -yaml;
-
-=head1 NOTE FOR INSTALLING XXX
-
-Use `cpanm`. It just works!
-
-    > cpanm --sudo XXX
-
-Otherwise, read this...
-
-At this time CPAN indexes XXX.pm to some other module distribution that
-doesn't even have an XXX.pm module. Oh the wonders of CPAN. To install
-this module, ask for YYY.pm instead. Something like this should work:
-
-    > sudo cpan YYY
-
-This will install XXX.pm and YYY.pm (which is an exact copy of XXX.pm).
-You can use either one. :)
 
 =head1 AUTHOR
 

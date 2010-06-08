@@ -33,6 +33,9 @@ FUNCTIONS
     YYY YYY will print a dump of its arguments, and then return the original
         arguments. This means you can stick it in the middle of expressions.
 
+        If you use YYY with Test::More, it will <diag()> rather than
+        "print()".
+
         mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
     ZZZ ZZZ will Carp::confess a dump of its arguments.
@@ -52,22 +55,6 @@ ADVANCED USAGE
 
         use XXX -dumper;
         use XXX -yaml;
-
-NOTE FOR INSTALLING XXX
-    Use `cpanm`. It just works!
-
-        > cpanm --sudo XXX
-
-    Otherwise, read this...
-
-    At this time CPAN indexes XXX.pm to some other module distribution that
-    doesn't even have an XXX.pm module. Oh the wonders of CPAN. To install
-    this module, ask for YYY.pm instead. Something like this should work:
-
-        > sudo cpan YYY
-
-    This will install XXX.pm and YYY.pm (which is an exact copy of XXX.pm).
-    You can use either one. :)
 
 AUTHOR
     Ingy döt Net <ingy@cpan.org>

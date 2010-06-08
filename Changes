@@ -1,4 +1,10 @@
 ---
+version: 0.15
+date:    Tue Jun  8 12:27:35 PDT 2010
+changes:
+- Got rid of YYY.pm. Hopefully we can fix CPAN indexing!
+- Use Test::More::diag with YYY if it is loaded.
+---
 version: 0.14
 date:    Mon Jun  7 23:27:45 PDT 2010
 changes:
