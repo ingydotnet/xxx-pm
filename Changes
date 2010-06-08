@@ -1,4 +1,10 @@
 ---
+version: 0.14
+date:    Mon Jun  7 23:27:45 PDT 2010
+changes:
+- Added: use XXX -with => 'Other::Dump::Module'; syntax.
+- Updated docs.
+---
 version: 0.12
 date:    Tue Jun  3 13:07:31 PDT 2008
 changes:

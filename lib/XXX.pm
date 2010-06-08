@@ -10,33 +10,58 @@ use base 'Exporter';
     *{"YYY::"} = *{"XXX::"};
 }
 
-our $VERSION = '0.12';
+our $VERSION = '0.14';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
-my $dump = 'yaml';
+my $dump_type = 'yaml';
+my $dump_module = 'YAML';
 
 sub import {
     my ($package, @args) = @_;
-    for my $arg (@args) {
-        $dump = 'dumper'
-          if $arg =~ /^-dumper$/i;
-        $dump = 'yaml'
-          if $arg =~ /^-yaml$/i;
+    for (my $i = 0; $i < @args; $i++) {
+        my $arg = $args[$i];
+        if ($arg =~ /^-dumper$/i) {
+            $dump_type = 'dumper';
+            $dump_module = 'Data::Dumper';
+        }
+        elsif ($arg =~ /^-yaml$/i) {
+            $dump_type = 'yaml';
+            $dump_module = 'YAML';
+        }
+        elsif ($arg eq '-with') {
+            die "-with requires another argument"
+              unless $i++ < @args;
+            my $with = $args[$i];
+            $dump_module = $with;
+            $dump_type = 
+                $with =~ /^YAML/ ? 'yaml' :
+                $with eq 'Data::Dumper' ? 'dumper' :
+                die "Don't know how to use XXX -with $with";
+        }
+        else {
+            next;
+        }
+        last;
     }
+    eval "require $dump_module; 1" or die $@;
     @_ = ($package);
     goto &Exporter::import;
 }
 
 sub _xxx_dump {
+    no strict 'refs';
     no warnings;
-    if ($dump eq 'dumper') {
-        require Data::Dumper;
+    if ($dump_type eq 'yaml') {
+        return &{"$dump_module\::Dump"}(@_) . "...\n";
+    }
+    elsif ($dump_type eq 'dumper') {
         $Data::Dumper::Sortkeys = 1;
         $Data::Dumper::Indent = 1;
         return Data::Dumper::Dumper(@_);
     }
-    require YAML;
-    return YAML::Dump(@_) . "...\n";
+    else {
+        die "XXX had an internal error";
+    }
 }
 
 sub _at_line_number {
@@ -87,15 +112,10 @@ XXX.pm exports a function called XXX that you can put just about
 anywhere in your Perl code to make it die with a YAML dump of the
 arguments to its right.
 
-The charm of XXX-debugging is that it is easy to type and rarely
-requires parens and stands out visually so that you remember to
-remove it.
+The charm of XXX-debugging is that it is easy to type, rarely requires
+parens and stands out visually so that you remember to remove it.
 
 XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
-
-To use Data::Dumper instead of YAML:
-
-    use XXX -dumper;
 
 =head1 FUNCTIONS
 
@@ -129,13 +149,32 @@ mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
 =back
 
+=head1 ADVANCED USAGE
+
+By default, XXX uses YAML.pm to dump your data. You can change this like so:
+
+    use XXX -with => 'Data::Dumper';
+    use XXX -with => 'YAML::XS';
+    use XXX -with => 'YAML::SomeOtherYamlModule';
+
+You can also use these forms, but they are now deprecated:
+
+    use XXX -dumper;
+    use XXX -yaml;
+
 =head1 NOTE FOR INSTALLING XXX
+
+Use `cpanm`. It just works!
+
+    > cpanm --sudo XXX
+
+Otherwise, read this...
 
 At this time CPAN indexes XXX.pm to some other module distribution that
 doesn't even have an XXX.pm module. Oh the wonders of CPAN. To install
 this module, ask for YYY.pm instead. Something like this should work:
 
-    sudo cpan YYY
+    > sudo cpan YYY
 
 This will install XXX.pm and YYY.pm (which is an exact copy of XXX.pm).
 You can use either one. :)
@@ -146,7 +185,7 @@ Ingy döt Net <ingy@cpan.org>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2006, 2008. Ingy döt Net.
+Copyright (c) 2006, 2008, 2010. Ingy döt Net.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

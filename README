@@ -15,15 +15,10 @@ DESCRIPTION
     anywhere in your Perl code to make it die with a YAML dump of the
     arguments to its right.
 
-    The charm of XXX-debugging is that it is easy to type and rarely
-    requires parens and stands out visually so that you remember to remove
-    it.
+    The charm of XXX-debugging is that it is easy to type, rarely requires
+    parens and stands out visually so that you remember to remove it.
 
     XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
-
-    To use Data::Dumper instead of YAML:
-
-        use XXX -dumper;
 
 FUNCTIONS
     WWW WWW will warn a dump of its arguments, and then return the original
@@ -45,12 +40,31 @@ FUNCTIONS
         mnemonic: You should confess all your sins before you sleep.
         zzzzzzzz
 
+ADVANCED USAGE
+    By default, XXX uses YAML.pm to dump your data. You can change this like
+    so:
+
+        use XXX -with => 'Data::Dumper';
+        use XXX -with => 'YAML::XS';
+        use XXX -with => 'YAML::SomeOtherYamlModule';
+
+    You can also use these forms, but they are now deprecated:
+
+        use XXX -dumper;
+        use XXX -yaml;
+
 NOTE FOR INSTALLING XXX
+    Use `cpanm`. It just works!
+
+        > cpanm --sudo XXX
+
+    Otherwise, read this...
+
     At this time CPAN indexes XXX.pm to some other module distribution that
     doesn't even have an XXX.pm module. Oh the wonders of CPAN. To install
     this module, ask for YYY.pm instead. Something like this should work:
 
-        sudo cpan YYY
+        > sudo cpan YYY
 
     This will install XXX.pm and YYY.pm (which is an exact copy of XXX.pm).
     You can use either one. :)
@@ -59,7 +73,7 @@ AUTHOR
     Ingy döt Net <ingy@cpan.org>
 
 COPYRIGHT
-    Copyright (c) 2006, 2008. Ingy döt Net.
+    Copyright (c) 2006, 2008, 2010. Ingy döt Net.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
