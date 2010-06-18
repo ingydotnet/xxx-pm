@@ -1,4 +1,11 @@
 ---
+version: 0.16
+date:    Fri Jun 18 12:53:41 PDT 2010
+changes:
+- With Test::More, use diag for WWW and note for YYY. Thanks to theory and
+  schwern.
+- Use $Data::Dumper::Indent = 2 (instead of 1).
+---
 version: 0.15
 date:    Tue Jun  8 12:27:35 PDT 2010
 changes:

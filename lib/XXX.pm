@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base 'Exporter';
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 my $dump_type = 'yaml';
@@ -49,8 +49,8 @@ sub _xxx_dump {
         return &{"$dump_module\::Dump"}(@_) . "...\n";
     }
     elsif ($dump_type eq 'dumper') {
-        $Data::Dumper::Sortkeys = 1;
-        $Data::Dumper::Indent = 1;
+        local $Data::Dumper::Sortkeys = 1;
+        local $Data::Dumper::Indent = 2;
         return Data::Dumper::Dumper(@_);
     }
     else {
@@ -64,7 +64,16 @@ sub _at_line_number {
 }
 
 sub WWW {
-    warn _xxx_dump(@_) . _at_line_number();
+    my $dump = _xxx_dump(@_) . _at_line_number();
+    if (defined &main::diag and
+        defined &Test::More::diag and
+        \&main::diag eq \&Test::More::diag
+    ) {
+        main::diag($dump);
+    }
+    else {
+        warn($dump);
+    }
     return wantarray ? @_ : $_[0];
 }
 
@@ -74,11 +83,11 @@ sub XXX {
 
 sub YYY {
     my $dump = _xxx_dump(@_) . _at_line_number();
-    if (defined &main::diag and
-        defined &Test::More::diag and
-        \&main::diag eq \&Test::More::diag
+    if (defined &main::note and
+        defined &Test::More::note and
+        \&main::note eq \&Test::More::note
     ) {
-        main::diag($dump);
+        main::note($dump);
     }
     else {
         print($dump);
@@ -129,6 +138,8 @@ XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
 WWW will warn a dump of its arguments, and then return the original
 arguments. This means you can stick it in the middle of expressions.
 
+NOTE: If you use WWW with Test::More, it will <diag()> rather than C<warn()>.
+
 mnemonic: W for warn
 
 =item XXX
@@ -142,7 +153,7 @@ mnemonic: XXX == Death, Nudity
 YYY will print a dump of its arguments, and then return the original
 arguments. This means you can stick it in the middle of expressions.
 
-If you use YYY with Test::More, it will <diag()> rather than C<print()>.
+NOTE: If you use YYY with Test::More, it will <note()> rather than C<print()>.
 
 mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
