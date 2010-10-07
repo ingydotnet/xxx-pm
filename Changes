@@ -1,4 +1,11 @@
 ---
+version: 0.17
+date:    Fri Aug 20 08:26:52 PDT 2010
+changes:
+- Remove t/yyy.t
+- Support 'require XXX'
+- Support $XXX::DumpModule
+---
 version: 0.16
 date:    Fri Jun 18 12:53:41 PDT 2010
 changes:

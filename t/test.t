@@ -1,6 +1,6 @@
 use Test::More tests => 1;
 
-use XXX -dumper;
+use XXX -with => 'Data::Dumper';
 
 sub foo {
     XXX my $dog = Dog->new({has => ['fleas', 'style']});

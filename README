@@ -46,7 +46,7 @@ FUNCTIONS
         mnemonic: You should confess all your sins before you sleep.
         zzzzzzzz
 
-ADVANCED USAGE
+CONFIGURATION
     By default, XXX uses YAML.pm to dump your data. You can change this like
     so:
 
@@ -54,10 +54,16 @@ ADVANCED USAGE
         use XXX -with => 'YAML::XS';
         use XXX -with => 'YAML::SomeOtherYamlModule';
 
-    You can also use these forms, but they are now deprecated:
+    Only modules with names beginning with 'YAML' and the Data::Dumper
+    module are supported.
 
-        use XXX -dumper;
-        use XXX -yaml;
+    If you need to load XXX with "require", you can set the dumper module
+    with the $XXX::DumpModule global variable.
+
+        require XXX;
+        $XXX::DumpModule = 'YAML::Syck';
+        
+    XXX::XXX($variable);
 
 AUTHOR
     Ingy döt Net <ingy@cpan.org>

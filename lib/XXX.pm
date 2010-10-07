@@ -4,40 +4,35 @@ use strict;
 use warnings;
 use base 'Exporter';
 
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
-my $dump_type = 'yaml';
-my $dump_module = 'YAML';
+our $DumpModule = 'YAML';
 
 sub import {
     my ($package, @args) = @_;
     for (my $i = 0; $i < @args; $i++) {
         my $arg = $args[$i];
-        if ($arg =~ /^-dumper$/i) {
-            $dump_type = 'dumper';
-            $dump_module = 'Data::Dumper';
-        }
-        elsif ($arg =~ /^-yaml$/i) {
-            $dump_type = 'yaml';
-            $dump_module = 'YAML';
-        }
-        elsif ($arg eq '-with') {
+        if ($arg eq '-with') {
             die "-with requires another argument"
               unless $i++ < @args;
-            my $with = $args[$i];
-            $dump_module = $with;
-            $dump_type = 
-                $with =~ /^YAML/ ? 'yaml' :
-                $with eq 'Data::Dumper' ? 'dumper' :
-                die "Don't know how to use XXX -with $with";
+            $DumpModule = $args[$i];
+            die "Don't know how to use XXX -with '$DumpModule'"
+                unless $DumpModule =~ /^(YAML|Data::Dumper$)/;
+        }
+        # TODO Deprecation. These options are now undocumented. Next releases:
+        # warn, then die, then remove.
+        elsif ($arg =~ /^-dumper$/i) {
+            $DumpModule = 'Data::Dumper';
+        }
+        elsif ($arg =~ /^-yaml$/i) {
+            $DumpModule = 'YAML';
         }
         else {
             next;
         }
         last;
     }
-    eval "require $dump_module; 1" or die $@;
     @_ = ($package);
     goto &Exporter::import;
 }
@@ -45,8 +40,16 @@ sub import {
 sub _xxx_dump {
     no strict 'refs';
     no warnings;
+    $DumpModule ||= 'YAML';
+    my $dump_type =
+        ($DumpModule =~ /^YAML/) ? 'yaml' :
+        ($DumpModule eq 'Data::Dumper') ? 'dumper' :
+        die 'Invalid dump module in $DumpModule';
+    if (not defined ${"$DumpModule\::VERSION"}) {
+        eval "require $DumpModule; 1" or die $@;
+    }
     if ($dump_type eq 'yaml') {
-        return &{"$dump_module\::Dump"}(@_) . "...\n";
+        return &{"$DumpModule\::Dump"}(@_) . "...\n";
     }
     elsif ($dump_type eq 'dumper') {
         local $Data::Dumper::Sortkeys = 1;
@@ -165,7 +168,7 @@ mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
 =back
 
-=head1 ADVANCED USAGE
+=head1 CONFIGURATION
 
 By default, XXX uses YAML.pm to dump your data. You can change this like so:
 
@@ -173,10 +176,16 @@ By default, XXX uses YAML.pm to dump your data. You can change this like so:
     use XXX -with => 'YAML::XS';
     use XXX -with => 'YAML::SomeOtherYamlModule';
 
-You can also use these forms, but they are now deprecated:
+Only modules with names beginning with 'YAML' and the Data::Dumper
+module are supported.
 
-    use XXX -dumper;
-    use XXX -yaml;
+If you need to load XXX with C<require>, you can set the dumper module
+with the C<$XXX::DumpModule> global variable.
+
+    require XXX;
+    $XXX::DumpModule = 'YAML::Syck';
+    
+    XXX::XXX($variable);
 
 =head1 AUTHOR
 
