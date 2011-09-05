@@ -1,8 +1,3 @@
-use inc::Module::Install;
-
-name            'XXX';
-all_from        'lib/XXX.pm';
+use inc::Module::Package 'Ingy:modern 0.15';
 
 requires        'YAML';
-
-WriteAll;

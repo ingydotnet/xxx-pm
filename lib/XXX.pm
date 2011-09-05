@@ -1,10 +1,17 @@
+##
+# name:      XXX
+# abstract:  See Your Data in the Nude
+# author:    Ingy döt Net <ingy@cpan.org>
+# license:   perl
+# copyright: 2006, 2008, 2010-2011
+
 package XXX;
 use 5.006001;
 use strict;
 use warnings;
 use base 'Exporter';
 
-our $VERSION = '0.17';
+our $VERSION = '0.18';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 our $DumpModule = 'YAML';
@@ -62,7 +69,15 @@ sub _xxx_dump {
 }
 
 sub _at_line_number {
-    my ($file_path, $line_number) = (caller(1))[1,2];
+    my ($file_path, $line_number);
+    my $caller = 0;
+    while (++$caller) {
+        no strict 'refs';
+        my $skipper = (caller($caller))[0] . "::XXX_skip";
+        next if defined &$skipper and &$skipper();
+        ($file_path, $line_number) = (caller($caller))[1,2];
+        last;
+    }
     "  at $file_path line $line_number\n";
 }
 
@@ -104,12 +119,6 @@ sub ZZZ {
 }
 
 1;
-
-=encoding utf8
-
-=head1 NAME
-
-XXX - See Your Data in the Nude
 
 =head1 SYNOPSIS
 
@@ -187,17 +196,18 @@ with the C<$XXX::DumpModule> global variable.
     
     XXX::XXX($variable);
 
-=head1 AUTHOR
+=head1 STACK TRACE LEVEL
 
-Ingy döt Net <ingy@cpan.org>
+If you call a debugging function that calls XXX for you, XXX will print the
+wrong file and line number. To force XXX to skip a package in the call stack,
+just define the C<XXX_skip> constant like this:
 
-=head1 COPYRIGHT
+    package MyDebugger;
+    use constant XXX_skip => 1;
+    sub debug {
+        require XXX;
+        XXX::XXX(@_);
+    }
 
-Copyright (c) 2006, 2008, 2010. Ingy döt Net.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
-See L<http://www.perl.com/perl/misc/Artistic.html>
-
-=cut
+Now calls to MyDebugger::debug will print the file name you called it from,
+not from MyDebugger itself.
