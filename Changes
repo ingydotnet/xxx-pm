@@ -3,6 +3,7 @@ version: 0.18
 date:    Mon Sep  5 09:42:01 BST 2011
 changes:
 - Add XXX_skip support
+- Released from Liz++ and Wendy++'s Kitchen
 ---
 version: 0.17
 date:    Fri Aug 20 08:26:52 PDT 2010
