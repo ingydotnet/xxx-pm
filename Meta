@@ -1,0 +1,30 @@
+=meta: 0.0.1
+
+name: XXX
+version: 0.19
+abstract: See Your Data in the Nude
+homepage: https://metacpan.org/release/XXX
+
+license: perl
+copyright: 2006-2014. Ingy döt Net.
+author:
+  name: Ingy döt Net
+  email: ingy@ingy.net
+  github: ingydotnet
+  twitter: ingydotnet
+  freenode: ingy
+  homepage: http://ingy.net
+
+requires:
+  perl: 5.8.1
+  YAML: 0
+
+recommends:
+  YAML::XS: 0
+
+devel:
+  git: git@github.org/ingydotnet/xxx-pm
+  irc: irc.freenode.net/ingy
+  bug: https://github.com/ingydotnet/xxx-pm/issues/
+
+=travis: perl

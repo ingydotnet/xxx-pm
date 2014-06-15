@@ -5,13 +5,11 @@
 # license:   perl
 # copyright: 2006, 2008, 2010-2011
 
+use strict; use warnings;
 package XXX;
-use 5.006001;
-use strict;
-use warnings;
+
 use base 'Exporter';
 
-our $VERSION = '0.18';
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
 our $DumpModule = 'YAML';
@@ -119,95 +117,3 @@ sub ZZZ {
 }
 
 1;
-
-=head1 SYNOPSIS
-
-    use XXX;
-    XXX my $dog = Dog->new({has => ['fleas', 'style']});
-    my $dog = XXX Dog->new({has => ['fleas', 'style']});
-    my $dog = Dog->new(XXX {has => ['fleas', 'style']});
-    my $dog = Dog->new({XXX has => ['fleas', 'style']});
-    my $dog = Dog->new({has => XXX ['fleas', 'style']});
-    my $dog = Dog->new({has => [XXX 'fleas', 'style']});
-
-=head1 DESCRIPTION
-
-XXX.pm exports a function called XXX that you can put just about
-anywhere in your Perl code to make it die with a YAML dump of the
-arguments to its right.
-
-The charm of XXX-debugging is that it is easy to type, rarely requires
-parens and stands out visually so that you remember to remove it.
-
-XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
-
-=head1 FUNCTIONS
-
-=over
-
-=item WWW
-
-WWW will warn a dump of its arguments, and then return the original
-arguments. This means you can stick it in the middle of expressions.
-
-NOTE: If you use WWW with Test::More, it will <diag()> rather than C<warn()>.
-
-mnemonic: W for warn
-
-=item XXX
-
-XXX will die with a dump of its arguments.
-
-mnemonic: XXX == Death, Nudity
-
-=item YYY
-
-YYY will print a dump of its arguments, and then return the original
-arguments. This means you can stick it in the middle of expressions.
-
-NOTE: If you use YYY with Test::More, it will <note()> rather than C<print()>.
-
-mnemonic: YYY == Why Why Why??? or YAML YAML YAML
-
-=item ZZZ
-
-ZZZ will Carp::confess a dump of its arguments.
-
-mnemonic: You should confess all your sins before you sleep. zzzzzzzz
-
-=back
-
-=head1 CONFIGURATION
-
-By default, XXX uses YAML.pm to dump your data. You can change this like so:
-
-    use XXX -with => 'Data::Dumper';
-    use XXX -with => 'YAML::XS';
-    use XXX -with => 'YAML::SomeOtherYamlModule';
-
-Only modules with names beginning with 'YAML' and the Data::Dumper
-module are supported.
-
-If you need to load XXX with C<require>, you can set the dumper module
-with the C<$XXX::DumpModule> global variable.
-
-    require XXX;
-    $XXX::DumpModule = 'YAML::Syck';
-    
-    XXX::XXX($variable);
-
-=head1 STACK TRACE LEVEL
-
-If you call a debugging function that calls XXX for you, XXX will print the
-wrong file and line number. To force XXX to skip a package in the call stack,
-just define the C<XXX_skip> constant like this:
-
-    package MyDebugger;
-    use constant XXX_skip => 1;
-    sub debug {
-        require XXX;
-        XXX::XXX(@_);
-    }
-
-Now calls to MyDebugger::debug will print the file name you called it from,
-not from MyDebugger itself.
