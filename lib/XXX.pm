@@ -1,10 +1,3 @@
-##
-# name:      XXX
-# abstract:  See Your Data in the Nude
-# author:    Ingy döt Net <ingy@cpan.org>
-# license:   perl
-# copyright: 2006, 2008, 2010-2011
-
 use strict; use warnings;
 package XXX;
 

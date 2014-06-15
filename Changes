@@ -1,4 +1,9 @@
 ---
+version: 0.20
+date:    Sun Jun 15 11:36:29 PDT 2014
+changes:
+- Remove extra comments from the top
+---
 version: 0.19
 date:    Sun Jun 15 11:13:11 PDT 2014
 changes:
