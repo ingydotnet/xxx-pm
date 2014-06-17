@@ -1,4 +1,9 @@
 ---
+version: 0.21
+date:    Tue Jun 17 10:50:13 PDT 2014
+changes:
+- Switch to manual VERSION
+---
 version: 0.20
 date:    Sun Jun 15 11:36:29 PDT 2014
 changes:
