@@ -1,4 +1,11 @@
 ---
+version: 0.22
+date:    Wed Jul 30 16:23:52 PDT 2014
+changes:
+- Doc to swim
+- Fix Meta and add Contributing
+- Switch IRC to '#pkg'
+---
 version: 0.21
 date:    Tue Jun 17 10:50:13 PDT 2014
 changes:
@@ -43,7 +50,7 @@ changes:
 version: 0.14
 date:    Mon Jun  7 23:27:45 PDT 2010
 changes:
-- Added: use XXX -with => 'Other::Dump::Module'; syntax.
+- Added `use XXX -with => 'Other::Dump::Module';` syntax.
 - Updated docs.
 ---
 version: 0.12

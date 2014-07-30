@@ -1,7 +1,7 @@
 =meta: 0.0.1
 
 name: XXX
-version: 0.21
+version: 0.22
 abstract: See Your Data in the Nude
 homepage: https://metacpan.org/release/XXX
 
@@ -23,8 +23,10 @@ recommends:
   YAML::XS: 0
 
 devel:
-  git: git@github.org/ingydotnet/xxx-pm
-  irc: irc.freenode.net/ingy
-  bug: https://github.com/ingydotnet/xxx-pm/issues/
+  git: https://github.com/ingydotnet/xxx-pm
+  bug: https://github.com/ingydotnet/xxx-pm/issues
+  irc: irc.freenode.net#pkg
 
-=travis: perl
+=travis:
+  type: perl
+  irc: irc.freenode.net#pkg
