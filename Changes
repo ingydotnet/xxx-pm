@@ -1,4 +1,9 @@
 ---
+version: 0.23
+date:    Thu Jul 31 12:08:56 PDT 2014
+changes:
+- Fix encoding bug in Pod
+---
 version: 0.22
 date:    Wed Jul 30 16:23:52 PDT 2014
 changes:
