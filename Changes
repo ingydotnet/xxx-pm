@@ -1,4 +1,9 @@
 ---
+version: 0.24
+date:    Mon Aug  4 00:46:46 PDT 2014
+changes:
+- Remove (c) from Copyright
+---
 version: 0.23
 date:    Thu Jul 31 12:08:56 PDT 2014
 changes:
