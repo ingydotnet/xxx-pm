@@ -1,19 +1,25 @@
-=meta: 0.0.1
+=meta: 0.0.2
 
 name: XXX
-version: 0.25
+version: 0.26
 abstract: See Your Data in the Nude
 homepage: https://metacpan.org/release/XXX
-
+language: perl
 license: perl
-copyright: 2006-2014. Ingy döt Net.
+copyright: 2006-2014
+
 author:
   name: Ingy döt Net
   email: ingy@ingy.net
+  homepage: http://ingy.net
   github: ingydotnet
   twitter: ingydotnet
   freenode: ingy
-  homepage: http://ingy.net
+
+devel:
+  git: https://github.com/ingydotnet/xxx-pm
+  bug: https://github.com/ingydotnet/xxx-pm/issues
+  irc: irc.freenode.net#pkg
 
 requires:
   perl: 5.8.1
@@ -21,12 +27,3 @@ requires:
 
 recommends:
   YAML::XS: 0
-
-devel:
-  git: https://github.com/ingydotnet/xxx-pm
-  bug: https://github.com/ingydotnet/xxx-pm/issues
-  irc: irc.freenode.net#pkg
-
-=travis:
-  type: perl
-  irc: irc.freenode.net#pkg
