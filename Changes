@@ -1,4 +1,9 @@
 ---
+version: 0.27
+date:    Sat Aug 16 14:49:50 PDT 2014
+changes:
+- Change Meta email
+---
 version: 0.26
 date:    Sat Aug 16 12:55:18 PDT 2014
 changes:
