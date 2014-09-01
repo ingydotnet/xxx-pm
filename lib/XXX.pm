@@ -16,7 +16,11 @@ sub import {
               unless $i++ < @args;
             $DumpModule = $args[$i];
             die "Don't know how to use XXX -with '$DumpModule'"
-                unless $DumpModule =~ /^(YAML|Data::Dumper$)/;
+                unless $DumpModule =~ /^(
+                                           YAML|
+                                           Data::Dumper|
+                                           Data::Dump(?:::Color)?
+                                       )$/x;
         }
         # TODO Deprecation. These options are now undocumented. Next releases:
         # warn, then die, then remove.
@@ -42,6 +46,8 @@ sub _xxx_dump {
     my $dump_type =
         ($DumpModule =~ /^YAML/) ? 'yaml' :
         ($DumpModule eq 'Data::Dumper') ? 'dumper' :
+        ($DumpModule eq 'Data::Dump') ? 'dump' :
+        ($DumpModule eq 'Data::Dump::Color') ? 'dumpcolor' :
         die 'Invalid dump module in $DumpModule';
     if (not defined ${"$DumpModule\::VERSION"}) {
         eval "require $DumpModule; 1" or die $@;
@@ -53,6 +59,12 @@ sub _xxx_dump {
         local $Data::Dumper::Sortkeys = 1;
         local $Data::Dumper::Indent = 2;
         return Data::Dumper::Dumper(@_);
+    }
+    elsif ($dump_type eq 'dump') {
+        return Data::Dump::dump(@_) . "\n";
+    }
+    elsif ($dump_type eq 'dumpcolor') {
+        return Data::Dump::Color::dump(@_) . "\n";
     }
     else {
         die "XXX had an internal error";
