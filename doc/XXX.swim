@@ -63,11 +63,13 @@ XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
 By default, XXX uses YAML.pm to dump your data. You can change this like so:
 
   use XXX -with => 'Data::Dumper';
+  use XXX -with => 'Data::Dump';
+  use XXX -with => 'Data::Dump::Color';
   use XXX -with => 'YAML::XS';
   use XXX -with => 'YAML::SomeOtherYamlModule';
 
-Only modules with names beginning with 'YAML' and the Data::Dumper module are
-supported.
+Only modules with names beginning with 'YAML', Data::Dumper, Data::Dump, and
+Data::Dump::Color module are supported.
 
 If you need to load XXX with `require`, you can set the dumper module with
 the `$XXX::DumpModule` global variable.
