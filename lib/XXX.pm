@@ -1,6 +1,6 @@
 use strict; use warnings;
 package XXX;
-our $VERSION = '0.28';
+our $VERSION = '0.29';
 use base 'Exporter';
 
 our @EXPORT = qw( WWW XXX YYY ZZZ );

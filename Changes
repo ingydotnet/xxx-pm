@@ -1,4 +1,9 @@
 ---
+version: 0.29
+date:    Sat Oct 11 18:30:39 CEST 2014
+changes:
+- Apply PR/7 by @perlancar++.
+---
 version: 0.28
 date:    Wed Sep  3 00:11:39 MDT 2014
 changes:
