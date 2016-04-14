@@ -17,7 +17,7 @@ sub import {
             $DumpModule = $args[$i];
             die "Don't know how to use XXX -with '$DumpModule'"
                 unless $DumpModule =~ /^(
-                                           YAML|
+                                           YAML(?:::.*)?|
                                            Data::Dumper|
                                            Data::Dump(?:::Color)?
                                        )$/x;
