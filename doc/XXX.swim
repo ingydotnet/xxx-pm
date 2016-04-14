@@ -67,8 +67,10 @@ By default, XXX uses YAML.pm to dump your data. You can change this like so:
   use XXX -with => 'Data::Dump::Color';
   use XXX -with => 'YAML::XS';
   use XXX -with => 'YAML::SomeOtherYamlModule';
+  use XXX -with => 'JSON::Color';
+  use XXX -with => 'JSON::SomeOtherJsonModule';
 
-Only modules with names beginning with 'YAML', and the Data::Dumper,
+Only modules with names beginning with 'YAML' or 'JSON', and the Data::Dumper,
 Data::Dump, and Data::Dump::Color modules are supported.
 
 If you need to load XXX with `require`, you can set the dumper module with

@@ -17,7 +17,7 @@ sub import {
             $DumpModule = $args[$i];
             die "Don't know how to use XXX -with '$DumpModule'"
                 unless $DumpModule =~ /^(
-                                           YAML|
+                                           (?:YAML|JSON)(?:::.*)?|
                                            Data::Dumper|
                                            Data::Dump(?:::Color)?
                                        )$/x;
@@ -45,6 +45,7 @@ sub _xxx_dump {
     $DumpModule ||= 'YAML';
     my $dump_type =
         ($DumpModule =~ /^YAML/) ? 'yaml' :
+        ($DumpModule =~ /^JSON/) ? 'json' :
         ($DumpModule eq 'Data::Dumper') ? 'dumper' :
         ($DumpModule eq 'Data::Dump') ? 'dump' :
         ($DumpModule eq 'Data::Dump::Color') ? 'dumpcolor' :
@@ -54,6 +55,9 @@ sub _xxx_dump {
     }
     if ($dump_type eq 'yaml') {
         return &{"$DumpModule\::Dump"}(@_) . "...\n";
+    }
+    elsif ($dump_type eq 'json') {
+        return &{"$DumpModule\::encode_json"}(@_);
     }
     elsif ($dump_type eq 'dumper') {
         local $Data::Dumper::Sortkeys = 1;
