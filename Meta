@@ -1,12 +1,12 @@
 =meta: 0.0.2
 
 name: XXX
-version: 0.29
+version: 0.30
 abstract: See Your Data in the Nude
 homepage: https://metacpan.org/release/XXX
 language: perl
 license: perl
-copyright: 2006-2014
+copyright: 2006-2016
 
 author:
   name: Ingy döt Net

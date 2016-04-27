@@ -1,4 +1,9 @@
 ---
+version: 0.30
+date:    Wed Apr 27 06:54:32 PDT 2016
+changes:
+- Apply PR/9 by @mienaikage++.
+---
 version: 0.29
 date:    Sat Oct 11 18:30:39 CEST 2014
 changes:
