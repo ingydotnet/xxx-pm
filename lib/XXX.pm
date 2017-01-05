@@ -35,6 +35,14 @@ sub import {
         }
         last;
     }
+
+    if ($DumpModule ne 'YAML') {
+        no strict 'refs';
+        if (not defined ${"$DumpModule\::VERSION"}) {
+            eval "require $DumpModule; 1" or die $@;
+        }
+    }
+
     @_ = ($package);
     goto &Exporter::import;
 }
