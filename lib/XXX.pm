@@ -44,8 +44,8 @@ sub _xxx_dump {
     no warnings;
     $DumpModule ||= 'YAML';
     my $dump_type =
-        ($DumpModule =~ /^YAML/) ? 'yaml' :
-        ($DumpModule =~ /^JSON/) ? 'json' :
+        (substr($DumpModule, 0, 4) eq 'YAML') ? 'yaml' :
+        (substr($DumpModule, 0, 4) eq 'JSON') ? 'json' :
         ($DumpModule eq 'Data::Dumper') ? 'dumper' :
         ($DumpModule eq 'Data::Dump') ? 'dump' :
         ($DumpModule eq 'Data::Dump::Color') ? 'dumpcolor' :
