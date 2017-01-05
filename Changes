@@ -1,4 +1,9 @@
 ---
+version: 0.31
+date:    Thu Jan  5 12:07:51 PST 2017
+changes:
+- Fix dumping global regex vars. @EvanCarroll++ PR/2
+---
 version: 0.30
 date:    Wed Apr 27 06:54:32 PDT 2016
 changes:
