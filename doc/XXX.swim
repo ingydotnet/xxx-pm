@@ -70,6 +70,12 @@ By default, XXX uses YAML.pm to dump your data. You can change this like so:
   use XXX -with => 'JSON::Color';
   use XXX -with => 'JSON::SomeOtherJsonModule';
 
+You can also use the environment variable `PERL_XXX_DUMPER` to set
+the module, for example;
+
+  PERL_XXX_DUMPER=JSON::Color perl script.pl
+  PERL_XXX_DUMPER=YAML::PP::Highlight perl script.pl
+
 Only modules with names beginning with 'YAML' or 'JSON', and the Data::Dumper,
 Data::Dump, and Data::Dump::Color modules are supported.
 
