@@ -21,11 +21,13 @@ sub import {
             _set_dump_module($args[ $i ]);
         }
         # TODO Deprecation. These options are now undocumented. Next releases:
-        # warn, then die, then remove.
+        # die, then remove.
         elsif ($arg =~ /^-dumper$/i) {
+            warn "Option '-dumper' is deprecated";
             $DumpModule = 'Data::Dumper';
         }
         elsif ($arg =~ /^-yaml$/i) {
+            warn "Option '-yaml' is deprecated";
             $DumpModule = 'YAML';
         }
         else {
