@@ -1,4 +1,12 @@
 ---
+version: 0.31_001
+date:    Tue Dec  4 18:18:55 CET 2018
+changes:
+- Allow to specify a dump module as an environment variable
+  PR#11, TINITA
+- Warn about deprecated options -dumper, -yaml
+  PR#12, TINITA
+---
 version: 0.31
 date:    Thu Jan  5 12:07:51 PST 2017
 changes:
