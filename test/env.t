@@ -1,8 +1,6 @@
 use strict;
 use warnings;
 
-use v5.10;
-
 use Test::More;
 
 my $json_color = eval "use JSON::Color; 1";
