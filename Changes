@@ -1,4 +1,9 @@
 ---
+version: 0.32_001
+date:    Mon 10 Jun 2019 12:26:43 PM CEST
+changes:
+- Make 5.8 compatible again (TINITA)
+---
 version: 0.32
 date:    Tue Dec  4 23:29:52 CET 2018
 changes:
