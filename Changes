@@ -1,4 +1,9 @@
 ---
+version: 0.34
+date:    Mon Jan 20 12:38:24 PST 2020
+changes:
+- Use YAML::PP as default dumper
+---
 version: 0.33
 date:    Thu 13 Jun 2019 10:17:10 PM CEST
 changes:

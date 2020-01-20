@@ -12,7 +12,7 @@ XXX - See Your Data in the Nude
 
 =head1 Version
 
-This document describes L<XXX> version B<0.33>.
+This document describes L<XXX> version B<0.34>.
 
 =for html
 <a href="https://travis-ci.org/ingydotnet/xxx-pm"><img src="https://travis-ci.org/ingydotnet/xxx-pm.png" alt="xxx-pm"></a>
