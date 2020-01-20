@@ -1,4 +1,9 @@
 ---
+version: 0.35
+date:    Mon Jan 20 15:08:01 PST 2020
+changes:
+- Add Perl schema to YAML::PP dumping
+---
 version: 0.34
 date:    Mon Jan 20 12:38:24 PST 2020
 changes:
