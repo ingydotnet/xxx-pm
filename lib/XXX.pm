@@ -5,7 +5,7 @@ use base 'Exporter';
 
 our @EXPORT = qw( WWW XXX YYY ZZZ );
 
-our $DumpModule = 'YAML';
+our $DumpModule = 'YAML::PP';
 
 if ($ENV{PERL_XXX_DUMPER}) {
     _set_dump_module($ENV{PERL_XXX_DUMPER});
@@ -19,16 +19,6 @@ sub import {
             die "-with requires another argument"
               unless $i++ < @args;
             _set_dump_module($args[ $i ]);
-        }
-        # TODO Deprecation. These options are now undocumented. Next releases:
-        # die, then remove.
-        elsif ($arg =~ /^-dumper$/i) {
-            warn "Option '-dumper' is deprecated";
-            $DumpModule = 'Data::Dumper';
-        }
-        elsif ($arg =~ /^-yaml$/i) {
-            warn "Option '-yaml' is deprecated";
-            $DumpModule = 'YAML';
         }
         else {
             next;
@@ -53,7 +43,7 @@ sub _set_dump_module {
 sub _xxx_dump {
     no strict 'refs';
     no warnings;
-    $DumpModule ||= 'YAML';
+    $DumpModule ||= 'YAML::PP';
     my $dump_type =
         (substr($DumpModule, 0, 4) eq 'YAML') ? 'yaml' :
         (substr($DumpModule, 0, 4) eq 'JSON') ? 'json' :

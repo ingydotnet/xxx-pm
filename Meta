@@ -6,7 +6,7 @@ abstract: See Your Data in the Nude
 homepage: https://metacpan.org/release/XXX
 language: perl
 license: perl
-copyright: 2006-2019
+copyright: 2006-2020
 
 author:
   name: Ingy döt Net
@@ -23,7 +23,4 @@ devel:
 
 requires:
   perl: 5.8.1
-  YAML: 0
-
-recommends:
-  YAML::XS: 0
+  YAML::PP: 0.018
