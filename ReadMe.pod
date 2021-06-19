@@ -12,7 +12,7 @@ XXX - See Your Data in the Nude
 
 =head1 Version
 
-This document describes L<XXX> version B<0.35>.
+This document describes L<XXX> version B<0.36>.
 
 =for html
 <a href="https://travis-ci.org/ingydotnet/xxx-pm"><img src="https://travis-ci.org/ingydotnet/xxx-pm.png" alt="xxx-pm"></a>
@@ -76,6 +76,13 @@ mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
 =back
 
+=head1 Use XXX without C<use XXX;>
+
+If you C<export PERL5OPT='-MXXX=global'> in your shell environment, then XXX
+will be always be loaded, and all the functions will also be exported into the
+C<main> namespace. That means you can call C<XXX> from any package with
+C<::XXX> (since C<::> is a synonym for C<main::>).
+
 =head1 Configuration
 
 By default, XXX uses YAML::PP to dump your data. You can change this like so:
@@ -128,7 +135,7 @@ Ingy döt Net <ingy@cpan.org>
 
 =head1 Copyright and License
 
-Copyright 2006-2020. Ingy döt Net.
+Copyright 2006-2021. Ingy döt Net.
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

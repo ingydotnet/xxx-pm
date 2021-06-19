@@ -1,6 +1,6 @@
 use strict; use warnings;
 package XXX;
-our $VERSION = '0.35';
+our $VERSION = '0.36';
 use base 'Exporter';
 
 our @EXPORT = qw( WWW XXX YYY ZZZ );
@@ -24,6 +24,12 @@ sub import {
             next;
         }
         last;
+    }
+    if (grep /^-?global$/, @args) {
+        *main::WWW = \&WWW;
+        *main::XXX = \&XXX;
+        *main::YYY = \&YYY;
+        *main::ZZZ = \&ZZZ;
     }
     @_ = ($package);
     goto &Exporter::import;

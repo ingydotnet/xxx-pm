@@ -55,6 +55,13 @@ XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
 
   mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
+= Use XXX without `use XXX;`
+
+If you `export PERL5OPT='-MXXX=global'` in your shell environment, then XXX
+will be always be loaded, and all the functions will also be exported into the
+`main` namespace. That means you can call `XXX` from any package with `::XXX`
+(since `::` is a synonym for `main::`).
+
 = Configuration
 
 By default, XXX uses YAML::PP to dump your data. You can change this like so:

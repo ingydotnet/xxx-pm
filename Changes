@@ -1,4 +1,9 @@
 ---
+version: 0.36
+date:    Fri 18 Jun 2021 05:12:02 PM PDT
+changes:
+- Support calling `::XXX` without needing `use XXX;`
+---
 version: 0.35
 date:    Mon Jan 20 15:08:01 PST 2020
 changes:
