@@ -1,4 +1,9 @@
 ---
+version: 0.37
+date:    Sat 19 Jun 2021 10:49:06 AM PDT
+changes:
+- Support calling `->$::XXX` with global - mst++ Devel::Dwarn++
+---
 version: 0.36
 date:    Fri 18 Jun 2021 05:12:02 PM PDT
 changes:

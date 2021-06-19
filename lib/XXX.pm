@@ -1,6 +1,6 @@
 use strict; use warnings;
 package XXX;
-our $VERSION = '0.36';
+our $VERSION = '0.37';
 use base 'Exporter';
 
 our @EXPORT = qw( WWW XXX YYY ZZZ );
@@ -30,6 +30,10 @@ sub import {
         *main::XXX = \&XXX;
         *main::YYY = \&YYY;
         *main::ZZZ = \&ZZZ;
+        $main::WWW = \&WWW;
+        $main::XXX = \&XXX;
+        $main::YYY = \&YYY;
+        $main::ZZZ = \&ZZZ;
     }
     @_ = ($package);
     goto &Exporter::import;
