@@ -14,34 +14,35 @@
 
 = Description
 
-XXX.pm exports a function called XXX that you can put just about anywhere in
-your Perl code to make it die with a YAML dump of the arguments to its right.
+`XXX.pm` exports a function called `XXX` that you can put just about anywhere
+in your Perl code to make it die with a YAML dump of the arguments to its
+right.
 
 The charm of XXX-debugging is that it is easy to type, rarely requires parens
 and stands out visually so that you remember to remove it.
 
-XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
+`XXX.pm` also exports `WWW`, `YYY` and `ZZZ` which do similar debugging things.
 
 = Functions
 
-- WWW
+- `WWW`
 
-  WWW will warn a dump of its arguments, and then return the original
+  `WWW` will warn a dump of its arguments, and then return the original
   arguments. This means you can stick it in the middle of expressions.
 
   NOTE: If you use WWW with Test::More, it will `diag()` rather than `warn()`.
 
   mnemonic: W for warn
 
-- XXX
+- `XXX`
 
-  XXX will die with a dump of its arguments.
+  `XXX` will die with a dump of its arguments.
 
   mnemonic: XXX == Death, Nudity
 
-- YYY
+- `YYY`
 
-  YYY will print a dump of its arguments, and then return the original
+  `YYY` will print a dump of its arguments, and then return the original
   arguments. This means you can stick it in the middle of expressions.
 
   NOTE: If you use YYY with Test::More, it will `note()` rather than
@@ -49,22 +50,42 @@ XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
 
   mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
-- ZZZ
+- `ZZZ`
 
-  ZZZ will Carp::confess a dump of its arguments.
+  `ZZZ` will Carp::confess a dump of its arguments.
 
   mnemonic: You should confess all your sins before you sleep. zzzzzzzz
 
+- `DDD`
+
+  `DDD` will start an interactive debugger session using the `Enbugger` module.
+  By default it will use the Perl debugger, but you can switch to the fancier
+  Devel::Trepan debugger by setting the enviroment variable
+  `PERL_XXX_DEBUGGER=trepan`.
+
+  In the debugger session you will be able to both read and modify all
+  variables including lexical variables.
+
+  mnemonic: Debug, Debug, Debug!
+
 = Use XXX without `use XXX;`
 
-If you `export PERL5OPT='-MXXX=global'` in your shell environment, then XXX
+If you `export PERL5OPT='-MXXX=global'` in your shell environment, then `XXX`
 will be always be loaded, and all the functions will also be exported into the
 `main` namespace. That means you can call `XXX` from any package with `::XXX`
 (since `::` is a synonym for `main::`).
 
+Also `XXX` will be exported as `$::XXX` which you can use like this:
+
+  $self->foo->$::WWW->bar;
+
+This will warn a YAML dump of `$self`, returning `$self` so that `bar` will be
+called correctly.
+
 = Configuration
 
-By default, XXX uses YAML::PP to dump your data. You can change this like so:
+By default, `XXX` uses YAML::PP to dump your data. You can change this like
+so:
 
   use XXX -with => 'Data::Dumper';
   use XXX -with => 'Data::Dump';
@@ -94,8 +115,8 @@ the `$XXX::DumpModule` global variable.
 
 = Stack Trace Level
 
-If you call a debugging function that calls XXX for you, XXX will print the
-wrong file and line number. To force XXX to skip a package in the call stack,
+If you call a debugging function that calls `XXX` for you, `XXX` will print the
+wrong file and line number. To force `XXX` to skip a package in the call stack,
 just define the `XXX_skip` constant like this:
 
   package MyDebugger;

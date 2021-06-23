@@ -12,7 +12,7 @@ XXX - See Your Data in the Nude
 
 =head1 Version
 
-This document describes L<XXX> version B<0.37>.
+This document describes L<XXX> version B<0.38>.
 
 =for html
 <a href="https://travis-ci.org/ingydotnet/xxx-pm"><img src="https://travis-ci.org/ingydotnet/xxx-pm.png" alt="xxx-pm"></a>
@@ -30,37 +30,38 @@ This document describes L<XXX> version B<0.37>.
 
 =head1 Description
 
-XXX.pm exports a function called XXX that you can put just about anywhere
-    in your Perl code to make it die with a YAML dump of the arguments to
-    its right.
+C<XXX.pm> exports a function called C<XXX> that you can put just about
+      anywhere in your Perl code to make it die with a YAML dump of the
+      arguments to its right.
 
 The charm of XXX-debugging is that it is easy to type, rarely requires parens
 and stands out visually so that you remember to remove it.
 
-XXX.pm also exports WWW, YYY and ZZZ which do similar debugging things.
+C<XXX.pm> also exports C<WWW>, C<YYY> and C<ZZZ> which do similar
+      debugging things.
 
 =head1 Functions
 
 =over
 
-=item WWW
+=item C<WWW>
 
-WWW will warn a dump of its arguments, and then return the original arguments.
-This means you can stick it in the middle of expressions.
+C<WWW> will warn a dump of its arguments, and then return the original
+arguments. This means you can stick it in the middle of expressions.
 
 NOTE: If you use WWW with Test::More, it will C<diag()> rather than C<warn()>.
 
 mnemonic: W for warn
 
-=item XXX
+=item C<XXX>
 
-XXX will die with a dump of its arguments.
+C<XXX> will die with a dump of its arguments.
 
 mnemonic: XXX == Death, Nudity
 
-=item YYY
+=item C<YYY>
 
-YYY will print a dump of its arguments, and then return the original
+C<YYY> will print a dump of its arguments, and then return the original
 arguments. This means you can stick it in the middle of expressions.
 
 NOTE: If you use YYY with Test::More, it will C<note()> rather than
@@ -68,24 +69,44 @@ NOTE: If you use YYY with Test::More, it will C<note()> rather than
 
 mnemonic: YYY == Why Why Why??? or YAML YAML YAML
 
-=item ZZZ
+=item C<ZZZ>
 
-ZZZ will Carp::confess a dump of its arguments.
+C<ZZZ> will Carp::confess a dump of its arguments.
 
 mnemonic: You should confess all your sins before you sleep. zzzzzzzz
+
+=item C<DDD>
+
+C<DDD> will start an interactive debugger session using the C<Enbugger>
+module. By default it will use the Perl debugger, but you can switch to the
+fancier Devel::Trepan debugger by setting the enviroment variable
+C<PERL_XXX_DEBUGGER=trepan>.
+
+In the debugger session you will be able to both read and modify all variables
+including lexical variables.
+
+mnemonic: Debug, Debug, Debug!
 
 =back
 
 =head1 Use XXX without C<use XXX;>
 
-If you C<export PERL5OPT='-MXXX=global'> in your shell environment, then XXX
-will be always be loaded, and all the functions will also be exported into the
-C<main> namespace. That means you can call C<XXX> from any package with
-C<::XXX> (since C<::> is a synonym for C<main::>).
+If you C<export PERL5OPT='-MXXX=global'> in your shell environment, then
+C<XXX> will be always be loaded, and all the functions will also be exported
+into the C<main> namespace. That means you can call C<XXX> from any package
+with C<::XXX> (since C<::> is a synonym for C<main::>).
+
+Also C<XXX> will be exported as C<$::XXX> which you can use like this:
+
+    $self->foo->$::WWW->bar;
+
+This will warn a YAML dump of C<$self>, returning C<$self> so that C<bar> will
+be called correctly.
 
 =head1 Configuration
 
-By default, XXX uses YAML::PP to dump your data. You can change this like so:
+By default, C<XXX> uses YAML::PP to dump your data. You can change this like
+so:
 
     use XXX -with => 'Data::Dumper';
     use XXX -with => 'Data::Dump';
@@ -115,9 +136,9 @@ the C<$XXX::DumpModule> global variable.
 
 =head1 Stack Trace Level
 
-If you call a debugging function that calls XXX for you, XXX will print the
-wrong file and line number. To force XXX to skip a package in the call stack,
-just define the C<XXX_skip> constant like this:
+If you call a debugging function that calls C<XXX> for you, C<XXX> will print
+the wrong file and line number. To force C<XXX> to skip a package in the call
+stack, just define the C<XXX_skip> constant like this:
 
     package MyDebugger;
     use constant XXX_skip => 1;
